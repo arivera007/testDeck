@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test deck</title>
+  <title>MPG prediction App</title>
   <meta charset="utf-8">
-  <meta name="description" content="Test deck">
-  <meta name="author" content="">
+  <meta name="description" content="MPG prediction App">
+  <meta name="author" content="Adriana Rivera">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -32,9 +32,9 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>Test deck</h1>
-    <h2></h2>
-    <p><br/></p>
+    <h1>MPG prediction App</h1>
+    <h2>MPG and weight relationship for your new car</h2>
+    <p>Adriana Rivera<br/></p>
   </hgroup>
   <article></article>  
 </slide>
@@ -43,13 +43,17 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>MilesPerGallon (MPG) prediction from car weight</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
+    <h3>This Shiny App help users choose their new car based on desired gas consumption.</h3>
+
+<h4>When it starts, it calculates MPG for a weight of 2,ooo lbs, to use it just follow the next steps:</h4>
+
+<ol>
+<li>Input the desired weight in the text box</li>
+<li>Press the &quot;Calculate MPG&quot; button</li>
+<li>Look at the results on your right. Youcan see both the numer and a graph showing where you stand.</li>
 </ol>
 
   </article>
@@ -58,13 +62,60 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Describing the Algorithm</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">plot(1:10, 1:10)
+    <ul>
+<li>To calculate the prediction, we used a simple Linear Regressaion Algorithm that only takes into account the weight of the car.</li>
+<li>This model is trained with the database mtcars included in R. </li>
+<li>The options for weight are only those from the mtcars database.</li>
+</ul>
+
+<pre><code class="r">data(mtcars)
+fit &lt;- lm(mpg ~ wt, data = mtcars)
+predict(fit, newdata = data.frame(wt = 3))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+<pre><code>##     1 
+## 21.25
+</code></pre>
+
+<p>This calculation shows the MPG predicted for a weight of 3,000 lbs.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Visualizing your MPG</h2>
+  </hgroup>
+  <article data-timings="">
+    <h4>Sample graph for a weight of 3,000 lbs.</h4>
+
+<pre><code class="r">plot(mtcars$wt, mtcars$mpg, pch = 19, xlab = &quot;Weight&quot;, ylab = &quot;MPG&quot;)
+points(mtcars$wt, mtcars$mpg, pch = 19)
+lines(mtcars$wt, fit$fitted, col = &quot;red&quot;, lwd = 3)
+abline(v = 3, col = &quot;blue&quot;, lwd = 3)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Future Developments</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>This App is  still a work in progress, and some of the features in the pipeline are:</h3>
+
+<ul>
+<li>Inclusion of the number of cylinders in the prediction.</li>
+<li>Type of transmission.</li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -76,14 +127,26 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='MilesPerGallon (MPG) prediction from car weight'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Describing the Algorithm'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Visualizing your MPG'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Future Developments'>
+         4
       </a>
     </li>
   </ul>
